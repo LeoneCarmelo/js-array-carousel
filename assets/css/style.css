@@ -13,9 +13,14 @@ body {
 
 .container {
     width:30%;
-    margin: auto;
+    margin:auto;
 }
 
 .container > img {
     max-width: 100%;
 }
+
+/* .container img:not(.visible) {
+    display: none;
+} */
+
