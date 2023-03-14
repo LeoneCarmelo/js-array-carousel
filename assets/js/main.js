@@ -31,4 +31,35 @@ arrowDown.style.left = 'calc(100% / 2)'
 arrowDown.innerHTML = `<i class="fa-solid fa-angle-down"></i>`
 containerEl.insertAdjacentElement('beforeend', arrowDown)
 
+//listen for click up
+arrowUp.addEventListener('click', function(){
+    //select all the image
+    const contImage = document.querySelectorAll('.container > img')
+    //select the current image
+    const currentImage = contImage[activeImage]
+    //remove visible class
+    currentImage.classList.remove('visible')
+    //increase activeImage variable
+    activeImage++
+    //create another variable for the next image
+    const nextImage = contImage[activeImage]
+    // add visible class to nextImage
+    nextImage.classList.add('visible')
+})
 
+
+//listen for click down
+arrowDown.addEventListener('click', function() {
+       //select all the image
+       const contImage = document.querySelectorAll('.container > img')
+       //select the current image
+       const currentImage = contImage[activeImage]
+       //remove visible class
+       currentImage.classList.remove('visible')
+       //increase activeImage variable
+       activeImage--
+       //create another variable for the next image
+       const nextImage = contImage[activeImage]
+       // add visible class to nextImage
+       nextImage.classList.add('visible')
+})
