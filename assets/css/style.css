@@ -14,13 +14,19 @@ body {
 .container {
     width:30%;
     margin:auto;
+    position:relative;
 }
 
 .container > img {
     max-width: 100%;
+    display:block;
 }
 
 .container img:not(.visible) {
     display: none;
+}
+
+button {
+    position:absolute;
 }
 
