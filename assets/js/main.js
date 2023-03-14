@@ -12,10 +12,11 @@ const imgList = [
 let activeImage = 0
 // Container img
 const containerEl = document.querySelector('.container')
-let images = ''
+let images =  ''
 for(let i = 0; i < imgList.length; i++) {
     const imgName = imgList[i]
-    images = `<img src="./assets/img/${imgName}" class="${i === activeImage ? 'visible' : ''}" >`
+    images += `<img src="./assets/img/${imgName}" class="${i === activeImage ? 'visible' : ''}" >`
     containerEl.innerHTML =  images
 }
+
 
