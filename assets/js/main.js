@@ -32,7 +32,7 @@ arrowDown.innerHTML = `<i class="fa-solid fa-angle-down"></i>`
 containerEl.insertAdjacentElement('beforeend', arrowDown)
 
 //listen for click up
-arrowUp.addEventListener('click', function(){
+arrowUp.addEventListener('click', function(){     
     //select all the image
     const contImage = document.querySelectorAll('.container > img')
     //select the current image
@@ -40,9 +40,13 @@ arrowUp.addEventListener('click', function(){
     //remove visible class
     currentImage.classList.remove('visible')
     //increase activeImage variable
-    activeImage++
+    if(activeImage === imgList.length - 1){
+        activeImage = 0
+    } else {
+        activeImage++
+    }
     //create another variable for the next image
-    const nextImage = contImage[activeImage]
+    let nextImage = contImage[activeImage]
     // add visible class to nextImage
     nextImage.classList.add('visible')
 })
@@ -56,8 +60,12 @@ arrowDown.addEventListener('click', function() {
        const currentImage = contImage[activeImage]
        //remove visible class
        currentImage.classList.remove('visible')
-       //increase activeImage variable
-       activeImage--
+       //Decrease activeImage variable
+       if (activeImage === 0) {
+        activeImage = imgList.length - 1
+       } else {
+        activeImage--
+       }
        //create another variable for the next image
        const nextImage = contImage[activeImage]
        // add visible class to nextImage

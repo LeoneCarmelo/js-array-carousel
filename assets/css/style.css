@@ -20,6 +20,7 @@ body {
 .container > img {
     max-width: 100%;
     display:block;
+    
 }
 
 .container img:not(.visible) {
