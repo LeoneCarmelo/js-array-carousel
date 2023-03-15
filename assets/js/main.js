@@ -18,18 +18,44 @@ for(let i = 0; i < imgList.length; i++) {
     images += `<img src="./assets/img/${imgName}" class="${i === activeImage ? 'visible' : ''}" >`
     containerEl.innerHTML = images
 }
+
 // create arrow Up
 const arrowUp = document.createElement('button')
 arrowUp.style.top = '0'
 arrowUp.style.left = 'calc(100% / 2)'
 arrowUp.innerHTML = `<i class="fa-solid fa-angle-up"></i>`
 containerEl.insertAdjacentElement('afterbegin', arrowUp)
+
 // create arrow Down
 const arrowDown = document.createElement('button')
 arrowDown.style.bottom = '0'
 arrowDown.style.left = 'calc(100% / 2)'
 arrowDown.innerHTML = `<i class="fa-solid fa-angle-down"></i>`
 containerEl.insertAdjacentElement('beforeend', arrowDown)
+
+// create thumbnails
+const thumbnails = document.createElement('div')
+thumbnails.setAttribute('id', 'cont-tiny-images')
+thumbnails.style.width = '200px'
+thumbnails.style.height = '100%'
+thumbnails.style.position = 'absolute'
+thumbnails.style.right = '0'
+thumbnails.style.top = '0'
+thumbnails.style.backgroundColor = 'black'
+containerEl.append(thumbnails)
+
+//create container tiny images
+for (let i = 0; i < imgList.length; i++){
+    const contTinyImage = document.createElement('div')
+    contTinyImage.style.width = '100%'
+    contTinyImage.style.height = 'calc(100% / 5)'
+    contTinyImage.style.display = 'block'
+    contTinyImage.style.backgroundImage = `url(../assets/img/${imgList[i]})`
+    contTinyImage.style.backgroundSize = 'cover'
+    contTinyImage.style.backgroundPosition = 'center'
+    thumbnails.insertAdjacentElement('beforeend', contTinyImage)
+}
+
 
 //listen for click up
 arrowUp.addEventListener('click', function(){     
@@ -39,11 +65,11 @@ arrowUp.addEventListener('click', function(){
     const currentImage = contImage[activeImage]
     //remove visible class
     currentImage.classList.remove('visible')
-    //increase activeImage variable
-    if(activeImage === imgList.length - 1){
-        activeImage = 0
+    //Decrease activeImage variable
+    if (activeImage === 0) {
+        activeImage = imgList.length - 1
     } else {
-        activeImage++
+        activeImage--
     }
     //create another variable for the next image
     let nextImage = contImage[activeImage]
@@ -54,18 +80,24 @@ arrowUp.addEventListener('click', function(){
 
 //listen for click down
 arrowDown.addEventListener('click', function() {
-       //select all the image
-       const contImage = document.querySelectorAll('.container > img')
-       //select the current image
-       const currentImage = contImage[activeImage]
-       //remove visible class
-       currentImage.classList.remove('visible')
-       //Decrease activeImage variable
-       if (activeImage === 0) {
-        activeImage = imgList.length - 1
-       } else {
-        activeImage--
-       }
+    //select all the image
+    const contImage = document.querySelectorAll('.container > img')
+    //select all the container of the tiny image
+    const allContImages = document.querySelectorAll('#cont-tiny-images > div')
+    //select the current image
+    const currentImage = contImage[activeImage]
+    //select the current container of the tiny image
+    const currentContImages = allContImages[activeImage]
+    //remove visible class
+    currentImage.classList.remove('visible')
+    //remove selected class
+    currentContImages.classList.add('selected')
+    //increase activeImage variable
+    if(activeImage === imgList.length - 1){
+        activeImage = 0
+    } else {
+        activeImage++
+    }
        //create another variable for the next image
        const nextImage = contImage[activeImage]
        // add visible class to nextImage
