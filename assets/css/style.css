@@ -12,13 +12,14 @@ body {
 }
 
 .container {
-    width:500px;
+    width:800px;
     margin:auto;
     position:relative;
 }
 
 .container > img {
-    max-width: 500px;
+    max-width: 100%;
+    width: inherit;
     display:block;
     height:400px;
     margin:auto;
@@ -34,5 +35,6 @@ body {
 
 button {
     position:absolute;
+    padding: 0.25rem 0.5rem;
 }
 
